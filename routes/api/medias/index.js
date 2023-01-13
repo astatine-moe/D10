@@ -17,7 +17,7 @@ const printer = new PdfPrinter({
 });
 
 const client = new ImgurClient({ clientId: process.env.IMGUR_CLIENT });
-const media = require("../../schemas/media");
+const media = require("../../../schemas/media");
 const { Media } = media;
 
 router.get("/", (req, res) => {
@@ -101,7 +101,9 @@ router.get("/:imdbID/pdf", (req, res) => {
 
             res.setHeader(
                 "Content-Disposition",
-                "attachment; filename=test.pdf"
+                `attachment; filename=MovieReport_${new Date()
+                    .toJSON()
+                    .slice(0, 10)}.pdf`
             );
             pipeline(pdfDoc, res, (err) => {
                 if (err) {
@@ -130,6 +132,23 @@ router.post("/", async (req, res) => {
     m.save()
         .then((newMedia) => {
             res.send(newMedia);
+        })
+        .catch((err) => {
+            if (err.status) {
+                res.status(err.status).send({ err: err.message });
+            } else {
+                console.log(err);
+                res.status(500).send(err);
+            }
+        });
+});
+router.delete("/:imdbID", (req, res) => {
+    const { imdbID } = req.params;
+
+    media
+        .deleteOne(imdbID)
+        .then((data) => {
+            res.send({ message: "OK" });
         })
         .catch((err) => {
             if (err.status) {

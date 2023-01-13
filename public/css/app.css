@@ -1,0 +1,144 @@
+html,
+body {
+    background: #141414;
+}
+
+.nav {
+    position: absolute;
+    top: 15px;
+    z-index: 99;
+    left: 0;
+    right: 0;
+}
+.uk-sticky-placeholder {
+    height: 0 !important;
+}
+.top-wrap::before,
+.overlay-wrap::before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    content: "";
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.top-wrap-height {
+    height: 100vh;
+    min-height: 460px;
+    transition: height 0.25s;
+}
+.uk-subnav-pill > * > :first-child {
+    padding: 0.5rem 1rem;
+    background-color: rgba(0, 0, 0, 0.04);
+}
+.top-container {
+    z-index: 2;
+}
+.uk-logo img {
+    height: 38px;
+}
+.subtitle-text {
+    font-size: 1.2em;
+    opacity: 0.9;
+    font-weight: 300;
+}
+.logos-grid img {
+    display: block;
+    width: 60px;
+    margin: 0 auto;
+    filter: grayscale(100%);
+    transition: filter 0.25s;
+}
+.logos-grid img:hover {
+    display: block;
+    width: 60px;
+    margin: 0 auto;
+    filter: grayscale(0);
+}
+
+.page-spacing {
+    margin-left: 4em;
+    margin-right: 4em;
+}
+.nav-spacing {
+    padding-left: 4em;
+    padding-right: 4em;
+}
+
+.play-button {
+    background-color: white !important;
+    color: black !important;
+}
+.play-button:hover {
+    background-color: rgba(255, 255, 255, 0.562) !important;
+}
+.info-button {
+    background-color: rgba(82, 82, 82, 0.322) !important;
+    border: 1px solid rgba(153, 153, 153, 0.322) !important;
+    color: rgb(255, 255, 255) !important;
+}
+.info-button:hover {
+    background-color: rgba(255, 255, 255, 0.562) !important;
+}
+
+nav input {
+    width: 15vw !important;
+}
+
+.uk-panel {
+    height: 17.5vh;
+}
+
+.uk-panel img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    filter: grayscale(0.5);
+    border: 1px solid rgba(255, 255, 255, 0.005);
+
+    object-position: 10% 0%;
+}
+.uk-panel img:hover {
+    filter: grayscale(0);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+header nav {
+    background-color: #222 !important;
+}
+
+.card-img-container {
+    height: 10em;
+}
+.card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.add-new {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hover-effect {
+    cursor: pointer;
+    transition: transform 200ms ease-in-out;
+}
+
+.hover-effect:hover {
+    transform: scale(1.05);
+}
+
+dt {
+    color: white !important;
+}
+.uk-description-list-divider > dt:nth-child(n + 2) {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}

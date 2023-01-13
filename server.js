@@ -3,7 +3,9 @@ const express = require("express"),
     bodyParser = require("body-parser"),
     path = require("path"),
     cors = require("cors"),
-    http = require("http");
+    morgan = require("morgan"),
+    http = require("http"),
+    env = process.env.NODE_ENV || "development";
 const expressListRoutes = require("express-list-routes");
 
 const dotenv = require("dotenv");
@@ -12,9 +14,25 @@ dotenv.config();
 const app = express();
 const server = http.createServer(app);
 
+app.use(morgan(env === "development" ? "dev" : "combined"));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
+
+app.set("view engine", "pug");
+app.set("views", path.join(__dirname, "views"));
+
+app.use("/static", express.static(path.resolve(__dirname, "public")));
+app.use("/", express.static(path.resolve(__dirname, "favicon")));
+app.use(
+    "/static/modules/jquery",
+    express.static(path.resolve(__dirname, "node_modules/jquery/dist"))
+);
+app.use(
+    "/static/modules/uikit",
+    express.static(path.resolve(__dirname, "node_modules/uikit/dist"))
+);
 
 server.listen(1000);
 

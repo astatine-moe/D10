@@ -1,0 +1,47 @@
+extends layout
+
+include nav.pug
+
+mixin tabs()
+    ul(uk-tab="animation: uk-animation-fade" id=id)
+        block
+mixin tab_item(name, icon, active = false)
+    - let isActive = active ? "uk-active" : ""
+    - let id = name.toLowerCase().replace(" ", "-")
+    li(class=isActive id=id)
+        a(href="#")
+            span(class="uk-margin-small-right" uk-icon=`icon: ${icon}; ratio: 0.8;`)
+            span=name
+mixin tab_content(active = false)
+    div(class="uk-switcher uk-margin")
+        block
+
+block content 
+    header
+        nav(class="uk-navbar uk-navbar-container uk-dark nav-spacing" data-uk-navbar)
+            +navItems()
+
+    div(class="uk-container uk-margin-top")
+        div(uk-grid)
+            div(class="uk-width-1-6")
+                img(src=media.Poster)
+            div(class="uk-width-5-6")
+                h2=media.Title
+                +tabs()
+                    +tab_item("Information", "info", true)
+                    +tab_item("Reviews", "heart")
+                +tab_content()
+                    li
+                        dl(class="uk-description-list uk-description-list-divider")
+                            dt Year
+                            dd=media.Year
+                            dt Type
+                            dd=media.Type
+                            dt ID
+                            dd=media.imdbID
+                    li
+                        h1 Hi1
+
+
+block scripts 
+    script(src="/static/js/media.js" defer)

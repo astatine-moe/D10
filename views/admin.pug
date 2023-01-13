@@ -1,0 +1,25 @@
+extends layout
+
+include nav.pug
+
+block content 
+    header
+        nav(class="uk-navbar uk-navbar-container uk-dark nav-spacing" data-uk-navbar)
+            +navItems()
+    div(class="page-spacing uk-margin-top")
+        div(uk-filter="target: .js-filter")
+            ul(class="uk-subnav uk-subnav-pill")
+                li(uk-filter-control=".item" class="uk-active")
+                    a(href="#") All
+                li(uk-filter-control=".movie")
+                    a(href="#") Movies 
+                li(uk-filter-control=".series")
+                    a(href="#") TV Series
+                li(uk-filter-control=".game")
+                    a(href="#") Video games
+            div(id="cards" class="js-filter uk-child-width-1-1 uk-child-width-1-4@m uk-grid-small uk-grid-match" uk-grid uk-scrollspy="cls: uk-animation-slide-right-small; target: > div; delay: 100")
+                div(class="item movie series game hover-effect" uk-toggle="#create")
+                    div(class="uk-card uk-card-secondary uk-card-body uk-relative")
+                        a(href="#" data-uk-icon="icon: plus; ratio: 2" class="add-new")
+block scripts 
+    script(src="/static/js/admin.js" defer)

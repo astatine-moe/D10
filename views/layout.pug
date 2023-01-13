@@ -1,0 +1,67 @@
+mixin input(label, icon, id, placeholder, disabled = true)
+    div(class="uk-margin")
+        label(class="uk-form-label" for=id)
+            span(class="uk-margin-small-right" uk-icon=icon)
+            | #{label} *
+        div(class="uk-form-controls")
+            if block
+                block
+            else 
+                input(type="text" class="uk-input" id=id name=id placeholder=placeholder disabled=(disabled))
+
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible" content="IE=edge")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        title Netflix 2.0
+
+        link(rel='apple-touch-icon' sizes='180x180' href='/apple-touch-icon.png')
+        link(rel='icon' type='image/png' sizes='32x32' href='/favicon-32x32.png')
+        link(rel='icon' type='image/png' sizes='16x16' href='/favicon-16x16.png')
+        link(rel='manifest' href='/site.webmanifest')
+        link(rel='mask-icon' href='/safari-pinned-tab.svg' color='#E50914')
+        meta(name='msapplication-TileColor' content="#E50914")
+        meta(name='theme-color' content="#E50914")
+
+        link(rel="stylesheet" href="/static/modules/uikit/css/uikit.min.css")
+        link(rel="stylesheet" href="/static/css/app.css")
+    body
+        div(uk-modal id="poster")
+            div(class="uk-modal-dialog")
+                button(class="uk-modal-close-defualt" type="button" uk-close)
+                div(class="uk-modal-header")
+                    h2(class="uk-modal-title") Change Poster
+                div(class="uk-modal-body")
+                    input(type="file" id="image" name="image" accept="image/*")
+                div(class="uk-modal-footer uk-text-right")
+                    button(class="uk-button uk-button-default uk-modal-close" type="button") Cancel
+                    button(class="uk-button uk-button-primary" data-action="save-poster" disabled uk-tooltip="Fill fields before saving") Save
+        div(uk-modal id="create")
+            div(class="uk-modal-dialog")
+                button(class="uk-modal-close-defualt" type="button" uk-close)
+                div(class="uk-modal-header")
+                    h2(class="uk-modal-title") Add media
+                div(class="uk-modal-body")
+                    form(class="uk-form-horizontal uk-margin-large")
+                        +input("IMDB ID", "code", "imdbid", "tt1520211", false)
+                        hr
+                        +input("Title", "search", "title", "Lord of the Rings...")
+                        +input("Year", "calendar", "year", "2001")
+                        +input("Type", "more", "type")
+                            select(class="uk-select" id="type" disabled)
+                                option(value="movie" selected) Movie
+                                option(value="series") TV Show
+                                option(value="game") Video game
+                        +input("Poster", "image", "poster", "https://blabla.com/image.png")
+                div(class="uk-modal-footer uk-text-right")
+                    button(class="uk-button uk-button-default uk-modal-close" type="button") Cancel
+                    button(class="uk-button uk-button-primary" data-action="save" disabled uk-tooltip="Fill fields before saving") Save
+        div(class="uk-light")
+            block content
+
+        script(src="/static/modules/jquery/jquery.min.js" defer)
+        script(src="/static/modules/uikit/js/uikit.min.js" defer)
+        script(src="/static/modules/uikit/js/uikit-icons.min.js" defer)
+        script(src="/static/js/global.js" defer)
+        block scripts
