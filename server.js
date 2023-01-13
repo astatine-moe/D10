@@ -34,7 +34,7 @@ app.use(
     express.static(path.resolve(__dirname, "node_modules/uikit/dist"))
 );
 
-server.listen(1000);
+server.listen(3000);
 
 async function* walk(dir) {
     //walk a directory to get all child folders
@@ -72,6 +72,6 @@ async function* walk(dir) {
         console.log(`Loaded route ${routeName}`);
     }
 
-    console.log("Ready @ http://127.0.0.1:1000");
+    console.log("Ready @ http://127.0.0.1:3000");
     console.table(expressListRoutes(app));
 })();
