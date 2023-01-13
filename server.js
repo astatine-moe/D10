@@ -44,7 +44,7 @@ async function* walk(dir) {
         else if (d.isFile()) yield entry;
     }
 }
-
+var isWin = process.platform === "win32";
 (async () => {
     //run async function when server.js is run
     let paths = [path.resolve(__dirname, "medias.json")];
@@ -57,7 +57,12 @@ async function* walk(dir) {
 
     for await (const p of walk("./routes/")) {
         const route = require(path.resolve(__dirname, p));
-        const dirs = p.split("\\");
+        let dirs;
+        if (isWin) {
+            dirs = p.split("\\");
+        } else {
+            dirs = p.split("/");
+        }
         dirs.shift(); //remove base dir
         const fileName = dirs.pop(); //get filename;
         let routeName;
